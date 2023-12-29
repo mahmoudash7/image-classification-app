@@ -17,7 +17,7 @@ if os.path.exists(model_path):
 else:
     st.error("Error: Model file not found.")
 
-CATEGORIES = ['modern bicycle', 'violin', 'kangaroo']
+CATEGORIES = ['violin', 'sheep']
 
 # Upload image through Streamlit
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
