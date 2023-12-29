@@ -3,13 +3,21 @@ import numpy as np
 from skimage.io import imread
 from skimage.transform import resize
 import pickle
-
-# Load the trained model
-model = pickle.load(open('img_svc_model.p', 'rb'))
-
-CATEGORIES = [ 'violin', 'sheep']
+import os
 
 st.title("Image Classification Web App")
+
+# Specify the absolute path to the model file
+model_path = os.path.join(os.path.dirname(__file__), 'img_svc_model.p')
+
+# Check if the model file exists
+if os.path.exists(model_path):
+    # Load the trained model
+    model = pickle.load(open(model_path, 'rb'))
+else:
+    st.error("Error: Model file not found.")
+
+CATEGORIES = ['modern bicycle', 'violin', 'kangaroo']
 
 # Upload image through Streamlit
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
@@ -26,4 +34,3 @@ if uploaded_file is not None:
 
     # Display the image and prediction
     st.image(img, caption=f'Predicted Output: {category}', use_column_width=True)
-
